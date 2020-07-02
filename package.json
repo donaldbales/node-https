@@ -1,0 +1,19 @@
+{
+  "name": "node-https",
+  "version": "0.0.0",
+  "description": "Experimental program to help understand Node.js' HTTPS module",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/donaldbales/node-https.git"
+  },
+  "author": "Donald J. Bales",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/donaldbales/node-https/issues"
+  },
+  "homepage": "https://github.com/donaldbales/node-https#readme"
+}
