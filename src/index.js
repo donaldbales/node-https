@@ -1,9 +1,16 @@
+const fs = require('fs');
 const https = require('https');
 const util = require('util');
 
 function short(obj) {
   return `${util.inspect(obj, true, 3, false)}`.replace(/\n/gi, '').slice(0, 80);  
 }
+
+const options = {
+  cert: fs.readFileSync('./cert.pem'),
+  key: fs.readFileSync('./key.pem'),
+};
+
 /*
 const server = https.createServer((arg1, arg2, arg3) => {
   console.log(`\n*** createServer()`);
@@ -12,7 +19,7 @@ const server = https.createServer((arg1, arg2, arg3) => {
   console.log(short(arg3)); // undefined
 });
 */
-const server = https.createServer();
+const server = https.createServer(options);
 console.log(short(server));
 
 // exception: Error
@@ -74,10 +81,6 @@ server.on('connection', (socket) => {
   console.log(short(socket));
 });
 
-server.on('headersTimeout', () => {
-  console.log(`\n*** server on headersTimeout`);
-});
-
 server.on('request', (request, response) => {
   const now = new Date().toISOString();
   response.on('close', () => {
@@ -103,4 +106,4 @@ server.on('upgrade', (request, socket, head) => {
   console.log(head);
 });
 
-server.listen({ host: 'localhost', port: 8000 });
+server.listen({ host: 'localhost', port: 8443 });
